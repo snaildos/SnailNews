@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: JamesIves/fetch-api-data-action@v2
         with:
-          endpoint: https://newsapi.org/v2/top-headlines?language=en&pageSize=35&apiKey=${{ secrets.NEWSAPI_KEY }}
+          endpoint: https://newsapi.org/v2/top-headlines?language=en&pageSize=100&apiKey=${{ secrets.NEWSAPI_KEY }}
 
       - uses: actions/upload-pages-artifact@v1
         with:
