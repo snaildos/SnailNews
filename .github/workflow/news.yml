@@ -1,0 +1,34 @@
+name: News
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  Main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: JamesIves/fetch-api-data-action@v2
+        with:
+          endpoint: https://newsapi.org/v2/top-headlines?language=en&pageSize=35&apiKey=${{ secrets.NEWSAPI_KEY }}
+
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: fetch-api-data-action
+
+  Deploy:
+    needs: Main
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v1
