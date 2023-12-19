@@ -13,7 +13,7 @@ jobs:
         with:
           endpoint: https://newsapi.org/v2/top-headlines?language=en&pageSize=100&apiKey=${{ secrets.NEWSAPI_KEY }}
 
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: fetch-api-data-action
 
